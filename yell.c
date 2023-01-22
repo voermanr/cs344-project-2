@@ -1,6 +1,7 @@
 #include "fcntl.h"
 #include "unistd.h"
 #include "stdio.h"
+#include "ctype.h"
 
 #define BUFSIZE 2048
 
@@ -13,6 +14,7 @@ int main (int argc, char *argv[]) {
         // no file specified, use stdin
         input_fd = 0;
         while ((n = read(input_fd, buf, BUFSIZE)) > 0) {
+            for (int i = 0; i < BUFSIZE; ++i) buf[i] = toupper(buf[i]);
             write(output_fd, buf, n);
         }
     } else {
