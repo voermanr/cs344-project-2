@@ -24,6 +24,7 @@ int main (int argc, char *argv[]) {
                 return 1;
             }
             while ((n = read(input_fd, buf, BUFSIZE)) > 0) {
+                for (int i = 0; i < BUFSIZE; ++i) buf[i] = toupper(buf[i]);
                 write(output_fd, buf, n);
             }
             close(input_fd);
